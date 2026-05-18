@@ -12,6 +12,31 @@
     </header>
     <main>
         <p>This webpage was created for the Impact.com Technical assessment. This is hosted in github pages.</p>
+
+        <div class='product-container'>
+            <div class='product-detail'><h1 id='product-name'>Super Widget</h1><span id='product-price'>19.99</span></div>
+        </div>
+
+        <button id='button1'>Press Me!</button>
     </main>
 </body>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    var products = document.getElementsByClassName('product-detail');
+    window.dataLayer.push({'Super Widget' : '19.99'});
+    console.log(window.dataLayer);
+</script>
+
+<script>
+async function buttonPressed() {
+    var resp = await fetch("https://httpbin.org/post", {
+        method: "POST",
+        body: JSON.stringify(window.dataLayer[0])
+    });
+    console.log(resp);
+}
+var button = document.getElementById('button1');
+button.addEventListener("click", buttonPressed);
+
+</script>
 </html>
